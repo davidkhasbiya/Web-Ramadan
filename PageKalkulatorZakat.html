@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Zakat - Ramadhan 1447 H</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2d5a27;
+            --gold-ramadan: #c5a059;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header.card-header-custom {
+            background-color: var(--primary-green);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-main {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background: white;
+            padding: 2rem;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .btn-hitung {
+            background-color: var(--primary-green);
+            color: white;
+            font-weight: 600;
+            border-radius: 10px;
+        }
+
+        .btn-hitung:hover {
+            background-color: #1e3d1a;
+            color: white;
+        }
+
+        #hasil-box {
+            border-left: 5px solid var(--gold-ramadan);
+            background-color: #fffdf5;
+        }
+
+        @media (max-width: 576px) {
+            .card-main {
+                padding: 1.5rem;
+                margin-top: 0;
+                border-radius: 0;
+            }
+
+            header.card-header-custom h1 {
+                font-size: 1.5rem;
+            }
+
+            .btn-hitung {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="card-header-custom">
+        <h1>Kalkulator Zakat</h1>
+        <p>Ramadhan 1447 H</p>
+    </header>
+
+    <main class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card card-main">
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Pilih Jenis Zakat</label>
+                        <select id="pilihZakat" class="form-select" onchange="toggleForm()">
+                            <option value="penghasilan">Zakat Penghasilan</option>
+                            <option value="emas">Zakat Emas</option>
+                        </select>
+                    </div>
+
+                    <hr>
+
+                    <div class="mb-3">
+                        <label class="form-label">Harga Emas Saat Ini (per gram)</label>
+                        <input id="InputHargaEmas" type="number" class="form-control" placeholder="Contoh: 1200000">
+                    </div>
+
+                    <div id="formPenghasilan">
+                        <div class="mb-3">
+                            <label class="form-label">Gaji Bulanan</label>
+                            <input id="InputGaji" type="number" class="form-control" placeholder="0">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Penghasilan Lainnya</label>
+                            <input id="InputPenghasilan" type="number" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div id="formEmas" class="hidden">
+                        <div class="mb-3">
+                            <label class="form-label">Total Berat Emas (Gram)</label>
+                            <input id="InputTotalEmas" type="number" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-hitung w-100 py-3 mt-3" onclick="prosesHitung()">Hitung Zakat</button>
+
+                    <div id="hasil" class="mt-4 p-3 rounded hidden">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white text-center py-3 mt-auto border-top">
+        <div class="container">
+            <p class="text-success fw-bold mb-1">Ramadhan 1447 H</p>
+            <small class="text-secondary">&copy; 2026 Web Ramadhan.</small>
+        </div>
+    </footer>
+
+    <script>
+        // Mengambil elemen input (Sesuai gaya JS kamu)
+        const inputGaji = document.getElementById("InputGaji");
+        const inputPenghasilan = document.getElementById("InputPenghasilan");
+        const inputEmas = document.getElementById("InputTotalEmas");
+        const inputHargaEmas = document.getElementById("InputHargaEmas");
+        const displayHasil = document.getElementById("hasil");
+
+        function toggleForm() {
+            const pilihan = document.getElementById("pilihZakat").value;
+            const formP = document.getElementById("formPenghasilan");
+            const formE = document.getElementById("formEmas");
+
+            if (pilihan === "penghasilan") {
+                formP.classList.remove("hidden");
+                formE.classList.add("hidden");
+            } else {
+                formP.classList.add("hidden");
+                formE.classList.remove("hidden");
+            }
+            displayHasil.classList.add("hidden");
+        }
+
+        function prosesHitung() {
+            const pilihan = document.getElementById("pilihZakat").value;
+
+            if (!inputHargaEmas.value) {
+                alert("Masukkan harga emas terlebih dahulu!");
+                return;
+            }
+
+            if (pilihan === "penghasilan") {
+                ZakatPenghasilan();
+            } else {
+                ZakatEmas();
+            }
+        }
+
+        function ZakatPenghasilan() {
+            const gaji = parseFloat(inputGaji.value) || 0;
+            const penghasilanLain = parseFloat(inputPenghasilan.value) || 0;
+            const hargaEmas = parseFloat(inputHargaEmas.value);
+
+            const total = gaji + penghasilanLain;
+            const nisab = hargaEmas * 85;
+            const zakat = (2.5 / 100) * total;
+
+            tampilkanHasil(total, nisab, zakat);
+        }
+
+        function ZakatEmas() {
+            const gram = parseFloat(inputEmas.value) || 0;
+            const hargaEmas = parseFloat(inputHargaEmas.value);
+
+            const nilaiEmas = gram * hargaEmas;
+            const nisab = hargaEmas * 85;
+            const zakat = (2.5 / 100) * nilaiEmas;
+
+            tampilkanHasil(nilaiEmas, nisab, zakat);
+        }
+
+        function tampilkanHasil(harta, nisab, jumlahZakat) {
+            displayHasil.classList.remove("hidden");
+            displayHasil.id = "hasil-box";
+
+            if (harta >= nisab) {
+                displayHasil.innerHTML = `
+                    <h5 class="text-success fw-bold">Wajib Zakat</h5>
+                    <p class="mb-1">Total Harta: <b>Rp ${harta.toLocaleString()}</b></p>
+                    <p class="mb-1">Nisab: Rp ${nisab.toLocaleString()}</p>
+                    <hr>
+                    <p class="mb-0">Zakat yang harus dibayar:</p>
+                    <h4 class="fw-bold text-dark">Rp ${jumlahZakat.toLocaleString()}</h4>
+                `;
+            } else {
+                displayHasil.innerHTML = `
+                    <h5 class="text-warning fw-bold">Belum Wajib Zakat</h5>
+                    <p class="mb-0 text-muted">Total harta Anda belum mencapai nisab (Rp ${nisab.toLocaleString()}).</p>
+                `;
+            }
+        }
+    </script>
+</body>
+
+</html>
