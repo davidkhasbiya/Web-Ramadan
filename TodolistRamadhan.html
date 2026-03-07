@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ramadhan 1447 H</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2d5a27;
+            --gold: #c5a059;
+            --bg: #f4f6f8;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* HEADER */
+
+        header {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        /* CARD */
+
+        .card-main {
+            border: none;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* PROGRESS */
+
+        .progress-custom {
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #e9ecef;
+        }
+
+        .progress-bar-custom {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: 0.3s;
+        }
+
+        /* CALENDAR */
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .day-box {
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .day-box.completed {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* DZIKIR */
+
+        .display-angka {
+            font-size: 60px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:576px) {
+
+            .display-angka {
+                font-size: 50px;
+            }
+
+            .card-main {
+                padding: 20px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Todo List Ramadhan</h1>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+
+        <div class="container">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#shalat">Shalat</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quran">Quran</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#puasa">Puasa</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dzikir">Dzikir</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- SHALAT -->
+
+    <section id="shalat" class="py-5">
+
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-5 col-md-7 col-sm-10">
+
+                    <div class="card card-main">
+
+                        <h4>Checklist Shalat Wajib</h4>
+
+                        <div class="form-check">
+                            <input class="form-check-input prayer" type="checkbox"> Subuh
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input prayer" type="checkbox"> Dzuhur
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input prayer" type="checkbox"> Ashar
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input prayer" type="checkbox"> Maghrib
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input prayer" type="checkbox"> Isya
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Progress</span>
+                            <span id="shalat-text">0%</span>
+                        </div>
+
+                        <div class="progress-custom">
+                            <div id="shalat-bar" class="progress-bar-custom"></div>
+                        </div>
+
+                        <p class="mt-2">Status: <strong id="shalat-status">Belum optimal</strong></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- QURAN -->
+
+    <section id="quran" class="py-5">
+
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-5 col-md-7 col-sm-10">
+
+                    <div class="card card-main">
+
+                        <h4>Baca Qur'an</h4>
+
+                        <label>Target Halaman</label>
+                        <input type="number" id="target" class="form-control">
+
+                        <label class="mt-3">Halaman Dibaca</label>
+                        <input type="number" id="dibaca" class="form-control">
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Progress</span>
+                            <span id="quran-text">0%</span>
+                        </div>
+
+                        <div class="progress-custom">
+                            <div id="quran-bar" class="progress-bar-custom"></div>
+                        </div>
+
+                        <p class="mt-2">Status: <strong id="quran-status">Belum optimal</strong></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- PUASA -->
+
+    <section id="puasa" class="py-5">
+
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-6 col-md-8">
+
+                    <div class="card card-main">
+
+                        <h4 class="text-center">Puasa Ramadhan</h4>
+
+                        <div id="calendar" class="calendar-grid mt-3"></div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between">
+                            <span>Total Puasa</span>
+                            <span id="puasa-text">0%</span>
+                        </div>
+
+                        <div class="progress-custom">
+                            <div id="puasa-bar" class="progress-bar-custom"></div>
+                        </div>
+
+                        <p class="mt-2">Status: <strong id="puasa-status">Belum optimal</strong></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- DZIKIR -->
+
+    <section id="dzikir" class="py-5">
+
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-5 col-md-7 col-sm-10">
+
+                    <div class="card card-main text-center">
+
+                        <h4>Dzikir Harian</h4>
+
+                        <input type="number" id="target-dzikir" class="form-control text-center"
+                            placeholder="Target dzikir">
+
+                        <div class="display-angka mt-3" id="dzikir-angka">0</div>
+
+                        <button onclick="tambahDzikir()" class="btn btn-success w-100 mt-3">
+                            Tambah
+                        </button>
+
+                        <button onclick="resetDzikir()" class="btn btn-danger w-100 mt-2">
+                            Reset
+                        </button>
+
+                        <p class="mt-2">Status: <strong id="dzikir-status">Belum mulai</strong></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="bg-white text-center py-3 mt-auto border-top">
+
+        <p class="text-success fw-bold mb-1">Ramadhan 1447 H</p>
+        <small class="text-secondary">&copy; 2026 Web Ramadhan</small>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        /* STATUS */
+
+        function getStatus(percent) {
+
+            if (percent <= 40) {
+                return "Belum optimal"
+            }
+
+            else if (percent <= 80) {
+                return "Cukup baik"
+            }
+
+            else {
+                return "MasyaAllah sangat baik"
+            }
+
+        }
+
+        /* SHALAT */
+
+        const prayers = document.querySelectorAll(".prayer")
+
+        prayers.forEach(cb => {
+            cb.addEventListener("change", updateShalat)
+        })
+
+        function updateShalat() {
+
+            let total = prayers.length
+            let checked = document.querySelectorAll(".prayer:checked").length
+
+            let percent = Math.round((checked / total) * 100)
+
+            document.getElementById("shalat-text").innerText = percent + "%"
+            document.getElementById("shalat-bar").style.width = percent + "%"
+            document.getElementById("shalat-status").innerText = getStatus(percent)
+
+        }
+
+        /* QURAN */
+
+        document.getElementById("target").oninput = updateQuran
+        document.getElementById("dibaca").oninput = updateQuran
+
+        function updateQuran() {
+
+            let target = document.getElementById("target").value
+            let read = document.getElementById("dibaca").value
+
+            let percent = 0
+
+            if (target > 0) {
+                percent = Math.round((read / target) * 100)
+                if (percent > 100) percent = 100
+            }
+
+            document.getElementById("quran-text").innerText = percent + "%"
+            document.getElementById("quran-bar").style.width = percent + "%"
+            document.getElementById("quran-status").innerText = getStatus(percent)
+
+        }
+
+        /* PUASA */
+
+        const totalDays = 30
+
+        function createCalendar() {
+
+            let grid = document.getElementById("calendar")
+
+            for (let i = 1; i <= totalDays; i++) {
+
+                let day = document.createElement("div")
+
+                day.className = "day-box"
+                day.innerText = i
+
+                day.onclick = function () {
+
+                    day.classList.toggle("completed")
+                    updatePuasa()
+
+                }
+
+                grid.appendChild(day)
+
+            }
+
+        }
+
+        function updatePuasa() {
+
+            let done = document.querySelectorAll(".day-box.completed").length
+
+            let percent = Math.round((done / totalDays) * 100)
+
+            document.getElementById("puasa-text").innerText = percent + "%"
+            document.getElementById("puasa-bar").style.width = percent + "%"
+            document.getElementById("puasa-status").innerText = getStatus(percent)
+
+        }
+
+        createCalendar()
+
+        /* DZIKIR */
+
+        let dzikir = 0
+
+        function tambahDzikir() {
+
+            let target = document.getElementById("target-dzikir").value
+
+            // jika belum ada target
+            if (target <= 0) {
+                alert("Masukkan target dzikir terlebih dahulu")
+                return
+            }
+
+            // jika sudah mencapai target
+            if (dzikir >= target) {
+                return
+            }
+
+
+            dzikir++
+
+            if (dzikir == target) {
+                alert("Alhamdulillah target dzikir tercapai!")
+            }
+            document.getElementById("dzikir-angka").innerText = dzikir
+
+            let percent = Math.round((dzikir / target) * 100)
+
+            if (percent > 100) percent = 100
+
+            document.getElementById("dzikir-status").innerText = getStatus(percent)
+
+        }
+        function resetDzikir() {
+
+            dzikir = 0
+
+            document.getElementById("dzikir-angka").innerText = 0
+            document.getElementById("dzikir-status").innerText = "Belum mulai"
+
+        }
+
+        /* LOAD */
+
+        updateShalat()
+        updateQuran()
+        updatePuasa()
+
+    </script>
+
+</body>
+
+</html>
