@@ -72,6 +72,21 @@
             }
         }
 
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold-ramadan) !important;
+        }
+
+        /* Biar navbar nempel di atas saat scroll */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
         @media (max-width: 576px) {
             .container {
                 padding-left: 10px;
@@ -92,9 +107,38 @@
 </head>
 
 <body>
-    <header class="card">
-        <div class="card-header">
-            <h1>Dzikir Harian</h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+            style="background-color: var(--primary-green); border-bottom: 1px solid rgba(197, 160, 89, 0.3);">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html" style="color: var(--gold-ramadan);">🌙 Ramadhan
+                    1447</a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="PageRamadhanPortal.html">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="DoaSahurdanBuka.html">Doa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="PageJadwalmsakiyah.html">Jadwal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="PageKalkulatorZakat.html">Zakat</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-bold" href="DzikirHarian.html"
+                                style="color: var(--gold-ramadan) !important;">Dzikir</a></li>
+                        <li class="nav-item"><a class="nav-link" href="TodolistRamadhan.html">Todo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="card border-0 text-white shadow-sm"
+            style="background-color: var(--primary-green); border-radius: 0 0 30px 30px; padding: 40px 0; text-align: center; margin-bottom: 30px;">
+            <div class="container">
+                <h1 class="mb-0">Dzikir Harian</h1>
+                <p class="mt-2 opacity-75">Pencatat Dzikir harian di bulan suci</p>
+            </div>
         </div>
     </header>
     <main class="container mb-5">

@@ -17,6 +17,28 @@
             --bg: #f4f6f8;
         }
 
+        /* Tambahkan ini agar navbar sticky dan hover seragam */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+            /* Di atas segalanya */
+        }
+
+        .nav-link:hover {
+            color: var(--gold) !important;
+        }
+
+        /* Navbar Anchor (Shalat, Quran, dll) agar lebih minimalis */
+        .nav-anchor {
+            background: white;
+            border-radius: 50px;
+            padding: 5px 20px;
+            margin-top: -15px;
+            /* Narik sedikit ke atas agar menyatu dengan header */
+            display: inline-flex;
+        }
+
         body {
             background: var(--bg);
             font-family: 'Poppins', sans-serif;
@@ -24,7 +46,6 @@
         }
 
         /* HEADER */
-
         header {
             background: var(--primary);
             color: white;
@@ -34,7 +55,6 @@
         }
 
         /* CARD */
-
         .card-main {
             border: none;
             border-radius: 15px;
@@ -43,7 +63,6 @@
         }
 
         /* PROGRESS */
-
         .progress-custom {
             height: 10px;
             border-radius: 10px;
@@ -59,7 +78,6 @@
         }
 
         /* CALENDAR */
-
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -83,16 +101,38 @@
         }
 
         /* DZIKIR */
-
         .display-angka {
             font-size: 60px;
             font-weight: bold;
             color: var(--primary);
         }
 
-        /* RESPONSIVE */
+        .nav-anchor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
 
-        @media(max-width:576px) {
+        .nav-anchor .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333 !important;
+        }
+
+        .nav-anchor .nav-link:hover {
+            color: var(--primary) !important;
+            /* Warna hijau sesuai tema kamu */
+        }
+
+        /* Menghilangkan padding default container di mobile agar tidak menggeser posisi */
+
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                text-align: left !important;
+                /* Memastikan teks tidak center saat menu drop-down terbuka */
+                padding-top: 15px;
+            }
 
             .display-angka {
                 font-size: 50px;
@@ -101,7 +141,6 @@
             .card-main {
                 padding: 20px;
             }
-
         }
     </style>
 
@@ -109,372 +148,353 @@
 
 <body>
 
-    <header>
-        <h1>Todo List Ramadhan</h1>
-    </header>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+                style="background-color: var(--primary); border-bottom: 1px solid rgba(197, 160, 89, 0.3);">
+                <div class="container">
+                    <a class="navbar-brand fw-bold" href="index.html" style="color: var(--gold);">🌙 Ramadhan 1447</a>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+                    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-        <div class="container">
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="menu">
-
-                <ul class="navbar-nav mx-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#shalat">Shalat</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#quran">Quran</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#puasa">Puasa</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#dzikir">Dzikir</a>
-                    </li>
-
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-
-    <!-- SHALAT -->
-
-    <section id="shalat" class="py-5">
-
-        <div class="container">
-            <div class="row justify-content-center">
-
-                <div class="col-lg-5 col-md-7 col-sm-10">
-
-                    <div class="card card-main">
-
-                        <h4>Checklist Shalat Wajib</h4>
-
-                        <div class="form-check">
-                            <input class="form-check-input prayer" type="checkbox"> Subuh
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input prayer" type="checkbox"> Dzuhur
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input prayer" type="checkbox"> Ashar
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input prayer" type="checkbox"> Maghrib
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input prayer" type="checkbox"> Isya
-                        </div>
-
-                        <hr>
-
-                        <div class="d-flex justify-content-between">
-                            <span>Progress</span>
-                            <span id="shalat-text">0%</span>
-                        </div>
-
-                        <div class="progress-custom">
-                            <div id="shalat-bar" class="progress-bar-custom"></div>
-                        </div>
-
-                        <p class="mt-2">Status: <strong id="shalat-status">Belum optimal</strong></p>
-
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="PageRamadhanPortal.html">Beranda</a></li>
+                            <li class="nav-item"><a class="nav-link" href="DoaSahurdanBuka.html">Doa</a></li>
+                            <li class="nav-item"><a class="nav-link" href="PageJadwalmsakiyah.html">Jadwal</a></li>
+                            <li class="nav-item"><a class="nav-link" href="PageKalkulatorZakat.html">Zakat</a></li>
+                            <li class="nav-item"><a class="nav-link" href="DzikirHarian.html">Dzikir</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link active fw-bold" href="TodolistRamadhan.html"
+                                    style="color: var(--gold) !important;">Todo</a>
+                            </li>
+                        </ul>
                     </div>
+                </div>
+            </nav>
+
+            <div class="card border-0 text-white shadow-sm"
+                style="background-color: var(--primary); border-radius: 0 0 30px 30px; padding: 40px 0; text-align: center; margin-bottom: 30px;">
+                <div class="container">
+                    <h1 class="mb-0">Todo List Harian</h1>
+                    <p class="mt-2 opacity-75">Pantau kemajuan ibadahmu setiap hari di bulan suci</p>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="sticky-top bg-transparent" style="top: 70px; z-index: 999;">
+            <div class="container d-flex justify-content-center">
+                <div class="nav-anchor shadow-sm border bg-white d-flex px-2 py-1" style="border-radius: 50px;">
+                    <a class="nav-link text-dark px-3" href="#shalat">Shalat</a>
+                    <a class="nav-link text-dark px-3" href="#quran">Quran</a>
+                    <a class="nav-link text-dark px-3" href="#puasa">Puasa</a>
+                    <a class="nav-link text-dark px-3" href="#dzikir">Dzikir</a>
                 </div>
             </div>
         </div>
 
-    </section>
-
-    <!-- QURAN -->
-
-    <section id="quran" class="py-5">
-
-        <div class="container">
-            <div class="row justify-content-center">
-
-                <div class="col-lg-5 col-md-7 col-sm-10">
-
-                    <div class="card card-main">
-
-                        <h4>Baca Qur'an</h4>
-
-                        <label>Target Halaman</label>
-                        <input type="number" id="target" class="form-control">
-
-                        <label class="mt-3">Halaman Dibaca</label>
-                        <input type="number" id="dibaca" class="form-control">
-
-                        <hr>
-
-                        <div class="d-flex justify-content-between">
-                            <span>Progress</span>
-                            <span id="quran-text">0%</span>
+        <!-- SHALAT -->
+        <section id="shalat" class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-7 col-sm-10">
+                        <div class="card card-main">
+                            <h4>Checklist Shalat Wajib</h4>
+                            <div class="form-check">
+                                <input class="form-check-input prayer" type="checkbox"> Subuh
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input prayer" type="checkbox"> Dzuhur
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input prayer" type="checkbox"> Ashar
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input prayer" type="checkbox"> Maghrib
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input prayer" type="checkbox"> Isya
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <span>Progress</span>
+                                <span id="shalat-text">0%</span>
+                            </div>
+                            <div class="progress-custom">
+                                <div id="shalat-bar" class="progress-bar-custom"></div>
+                            </div>
+                            <p class="mt-2">Status: <strong id="shalat-status">Belum optimal</strong></p>
                         </div>
-
-                        <div class="progress-custom">
-                            <div id="quran-bar" class="progress-bar-custom"></div>
-                        </div>
-
-                        <p class="mt-2">Status: <strong id="quran-status">Belum optimal</strong></p>
-
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-    </section>
-
-    <!-- PUASA -->
-
-    <section id="puasa" class="py-5">
-
-        <div class="container">
-            <div class="row justify-content-center">
-
-                <div class="col-lg-6 col-md-8">
-
-                    <div class="card card-main">
-
-                        <h4 class="text-center">Puasa Ramadhan</h4>
-
-                        <div id="calendar" class="calendar-grid mt-3"></div>
-
-                        <hr>
-
-                        <div class="d-flex justify-content-between">
-                            <span>Total Puasa</span>
-                            <span id="puasa-text">0%</span>
+        <!-- QURAN -->
+        <section id="quran" class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-7 col-sm-10">
+                        <div class="card card-main">
+                            <h4>Baca Qur'an</h4>
+                            <label>Target Halaman</label>
+                            <input type="number" id="target" class="form-control">
+                            <label class="mt-3">Halaman Dibaca</label>
+                            <input type="number" id="dibaca" class="form-control">
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <span>Progress</span>
+                                <span id="quran-text">0%</span>
+                            </div>
+                            <div class="progress-custom">
+                                <div id="quran-bar" class="progress-bar-custom"></div>
+                            </div>
+                            <p class="mt-2">Status: <strong id="quran-status">Belum optimal</strong></p>
                         </div>
-
-                        <div class="progress-custom">
-                            <div id="puasa-bar" class="progress-bar-custom"></div>
-                        </div>
-
-                        <p class="mt-2">Status: <strong id="puasa-status">Belum optimal</strong></p>
-
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-    </section>
+        <!-- PUASA -->
+        <section id="puasa" class="py-5">
 
-    <!-- DZIKIR -->
+            <div class="container">
+                <div class="row justify-content-center">
 
-    <section id="dzikir" class="py-5">
+                    <div class="col-lg-6 col-md-8">
 
-        <div class="container">
-            <div class="row justify-content-center">
+                        <div class="card card-main">
 
-                <div class="col-lg-5 col-md-7 col-sm-10">
+                            <h4 class="text-center">Puasa Ramadhan</h4>
 
-                    <div class="card card-main text-center">
+                            <div id="calendar" class="calendar-grid mt-3"></div>
 
-                        <h4>Dzikir Harian</h4>
+                            <hr>
 
-                        <input type="number" id="target-dzikir" class="form-control text-center"
-                            placeholder="Target dzikir">
+                            <div class="d-flex justify-content-between">
+                                <span>Total Puasa</span>
+                                <span id="puasa-text">0%</span>
+                            </div>
 
-                        <div class="display-angka mt-3" id="dzikir-angka">0</div>
+                            <div class="progress-custom">
+                                <div id="puasa-bar" class="progress-bar-custom"></div>
+                            </div>
 
-                        <button onclick="tambahDzikir()" class="btn btn-success w-100 mt-3">
-                            Tambah
-                        </button>
+                            <p class="mt-2">Status: <strong id="puasa-status">Belum optimal</strong></p>
 
-                        <button onclick="resetDzikir()" class="btn btn-danger w-100 mt-2">
-                            Reset
-                        </button>
-
-                        <p class="mt-2">Status: <strong id="dzikir-status">Belum mulai</strong></p>
-
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </section>
+        </section>
 
-    <footer class="bg-white text-center py-3 mt-auto border-top">
+        <!-- DZIKIR -->
 
-        <p class="text-success fw-bold mb-1">Ramadhan 1447 H</p>
-        <small class="text-secondary">&copy; 2026 Web Ramadhan</small>
+        <section id="dzikir" class="py-5">
 
-    </footer>
+            <div class="container">
+                <div class="row justify-content-center">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+                    <div class="col-lg-5 col-md-7 col-sm-10">
 
-    <script>
+                        <div class="card card-main text-center">
 
-        /* STATUS */
+                            <h4>Dzikir Harian</h4>
 
-        function getStatus(percent) {
+                            <input type="number" id="target-dzikir" class="form-control text-center"
+                                placeholder="Target dzikir">
 
-            if (percent <= 40) {
-                return "Belum optimal"
+                            <div class="display-angka mt-3" id="dzikir-angka">0</div>
+
+                            <button onclick="tambahDzikir()" class="btn btn-success w-100 mt-3">
+                                Tambah
+                            </button>
+
+                            <button onclick="resetDzikir()" class="btn btn-danger w-100 mt-2">
+                                Reset
+                            </button>
+
+                            <p class="mt-2">Status: <strong id="dzikir-status">Belum mulai</strong></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="bg-white text-center py-3 mt-auto border-top">
+
+            <p class="text-success fw-bold mb-1">Ramadhan 1447 H</p>
+            <small class="text-secondary">&copy; 2026 Web Ramadhan</small>
+
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+
+            /* STATUS */
+
+            function getStatus(percent) {
+
+                if (percent <= 40) {
+                    return "Belum optimal"
+                }
+
+                else if (percent <= 80) {
+                    return "Cukup baik"
+                }
+
+                else {
+                    return "MasyaAllah sangat baik"
+                }
+
             }
 
-            else if (percent <= 80) {
-                return "Cukup baik"
+            /* SHALAT */
+
+            const prayers = document.querySelectorAll(".prayer")
+
+            prayers.forEach(cb => {
+                cb.addEventListener("change", updateShalat)
+            })
+
+            function updateShalat() {
+
+                let total = prayers.length
+                let checked = document.querySelectorAll(".prayer:checked").length
+
+                let percent = Math.round((checked / total) * 100)
+
+                document.getElementById("shalat-text").innerText = percent + "%"
+                document.getElementById("shalat-bar").style.width = percent + "%"
+                document.getElementById("shalat-status").innerText = getStatus(percent)
+
             }
 
-            else {
-                return "MasyaAllah sangat baik"
+            /* QURAN */
+
+            document.getElementById("target").oninput = updateQuran
+            document.getElementById("dibaca").oninput = updateQuran
+
+            function updateQuran() {
+
+                let target = document.getElementById("target").value
+                let read = document.getElementById("dibaca").value
+
+                let percent = 0
+
+                if (target > 0) {
+                    percent = Math.round((read / target) * 100)
+                    if (percent > 100) percent = 100
+                }
+
+                document.getElementById("quran-text").innerText = percent + "%"
+                document.getElementById("quran-bar").style.width = percent + "%"
+                document.getElementById("quran-status").innerText = getStatus(percent)
+
             }
 
-        }
+            /* PUASA */
 
-        /* SHALAT */
+            const totalDays = 30
 
-        const prayers = document.querySelectorAll(".prayer")
+            function createCalendar() {
 
-        prayers.forEach(cb => {
-            cb.addEventListener("change", updateShalat)
-        })
+                let grid = document.getElementById("calendar")
 
-        function updateShalat() {
+                for (let i = 1; i <= totalDays; i++) {
 
-            let total = prayers.length
-            let checked = document.querySelectorAll(".prayer:checked").length
+                    let day = document.createElement("div")
 
-            let percent = Math.round((checked / total) * 100)
+                    day.className = "day-box"
+                    day.innerText = i
 
-            document.getElementById("shalat-text").innerText = percent + "%"
-            document.getElementById("shalat-bar").style.width = percent + "%"
-            document.getElementById("shalat-status").innerText = getStatus(percent)
+                    day.onclick = function () {
 
-        }
+                        day.classList.toggle("completed")
+                        updatePuasa()
 
-        /* QURAN */
+                    }
 
-        document.getElementById("target").oninput = updateQuran
-        document.getElementById("dibaca").oninput = updateQuran
-
-        function updateQuran() {
-
-            let target = document.getElementById("target").value
-            let read = document.getElementById("dibaca").value
-
-            let percent = 0
-
-            if (target > 0) {
-                percent = Math.round((read / target) * 100)
-                if (percent > 100) percent = 100
-            }
-
-            document.getElementById("quran-text").innerText = percent + "%"
-            document.getElementById("quran-bar").style.width = percent + "%"
-            document.getElementById("quran-status").innerText = getStatus(percent)
-
-        }
-
-        /* PUASA */
-
-        const totalDays = 30
-
-        function createCalendar() {
-
-            let grid = document.getElementById("calendar")
-
-            for (let i = 1; i <= totalDays; i++) {
-
-                let day = document.createElement("div")
-
-                day.className = "day-box"
-                day.innerText = i
-
-                day.onclick = function () {
-
-                    day.classList.toggle("completed")
-                    updatePuasa()
+                    grid.appendChild(day)
 
                 }
 
-                grid.appendChild(day)
+            }
+
+            function updatePuasa() {
+
+                let done = document.querySelectorAll(".day-box.completed").length
+
+                let percent = Math.round((done / totalDays) * 100)
+
+                document.getElementById("puasa-text").innerText = percent + "%"
+                document.getElementById("puasa-bar").style.width = percent + "%"
+                document.getElementById("puasa-status").innerText = getStatus(percent)
 
             }
 
-        }
+            createCalendar()
 
-        function updatePuasa() {
+            /* DZIKIR */
 
-            let done = document.querySelectorAll(".day-box.completed").length
+            let dzikir = 0
 
-            let percent = Math.round((done / totalDays) * 100)
+            function tambahDzikir() {
 
-            document.getElementById("puasa-text").innerText = percent + "%"
-            document.getElementById("puasa-bar").style.width = percent + "%"
-            document.getElementById("puasa-status").innerText = getStatus(percent)
+                let target = document.getElementById("target-dzikir").value
 
-        }
+                // jika belum ada target
+                if (target <= 0) {
+                    alert("Masukkan target dzikir terlebih dahulu")
+                    return
+                }
 
-        createCalendar()
+                // jika sudah mencapai target
+                if (dzikir >= target) {
+                    return
+                }
 
-        /* DZIKIR */
 
-        let dzikir = 0
+                dzikir++
 
-        function tambahDzikir() {
+                if (dzikir == target) {
+                    alert("Alhamdulillah target dzikir tercapai!")
+                }
+                document.getElementById("dzikir-angka").innerText = dzikir
 
-            let target = document.getElementById("target-dzikir").value
+                let percent = Math.round((dzikir / target) * 100)
 
-            // jika belum ada target
-            if (target <= 0) {
-                alert("Masukkan target dzikir terlebih dahulu")
-                return
+                if (percent > 100) percent = 100
+
+                document.getElementById("dzikir-status").innerText = getStatus(percent)
+
+            }
+            function resetDzikir() {
+
+                dzikir = 0
+
+                document.getElementById("dzikir-angka").innerText = 0
+                document.getElementById("dzikir-status").innerText = "Belum mulai"
+
             }
 
-            // jika sudah mencapai target
-            if (dzikir >= target) {
-                return
-            }
+            /* LOAD */
 
+            updateShalat()
+            updateQuran()
+            updatePuasa()
 
-            dzikir++
+        </script>
 
-            if (dzikir == target) {
-                alert("Alhamdulillah target dzikir tercapai!")
-            }
-            document.getElementById("dzikir-angka").innerText = dzikir
-
-            let percent = Math.round((dzikir / target) * 100)
-
-            if (percent > 100) percent = 100
-
-            document.getElementById("dzikir-status").innerText = getStatus(percent)
-
-        }
-        function resetDzikir() {
-
-            dzikir = 0
-
-            document.getElementById("dzikir-angka").innerText = 0
-            document.getElementById("dzikir-status").innerText = "Belum mulai"
-
-        }
-
-        /* LOAD */
-
-        updateShalat()
-        updateQuran()
-        updatePuasa()
-
-    </script>
-
-</body>
+    </body>
 
 </html>

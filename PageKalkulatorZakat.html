@@ -59,6 +59,22 @@
             background-color: #fffdf5;
         }
 
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold-ramadan) !important;
+        }
+
+        /* Biar navbar nempel di atas saat scroll */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+
         @media (max-width: 576px) {
             .card-main {
                 padding: 1.5rem;
@@ -78,9 +94,39 @@
 </head>
 
 <body>
-    <header class="card-header-custom">
-        <h1>Kalkulator Zakat</h1>
-        <p>Ramadhan 1447 H</p>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+            style="background-color: var(--primary-green); border-bottom: 1px solid rgba(197, 160, 89, 0.3);">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html" style="color: var(--gold-ramadan);">🌙 Ramadhan
+                    1447</a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="PageRamadhanPortal.html">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="DoaSahurdanBuka.html">Doa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="PageJadwalmsakiyah.html">Jadwal</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-bold" href="PageKalkulatorZakat.html"
+                                style="color: var(--gold-ramadan) !important;">Zakat</a></li>
+                        <li class="nav-item"><a class="nav-link" href="DzikirHarian.html">Dzikir</a></li>
+                        <li class="nav-item"><a class="nav-link" href="TodolistRamadhan.html">Todo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="card border-0 text-white shadow-sm"
+            style="background-color: var(--primary-green); border-radius: 0 0 30px 30px; padding: 40px 0; text-align: center; margin-bottom: 30px;">
+            <div class="container">
+                <h1 class="mb-0">Kalkulator Zakat</h1>
+                <p class="mt-2 opacity-75">Kalkulator Zakat yang simple dan mudah</p>
+            </div>
+        </div>
     </header>
 
     <main class="container my-4">
@@ -137,6 +183,8 @@
             <small class="text-secondary">&copy; 2026 Web Ramadhan.</small>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         // Mengambil elemen input (Sesuai gaya JS kamu)
