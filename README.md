@@ -26,7 +26,7 @@ Website ini mencakup beberapa halaman fungsional, di antaranya:
 Terima kasih kepada **Alhazen Academy** atas tantangan yang diberikan selama 15 hari ini. Proyek ini menjadi pengalaman berharga dalam membangun aplikasi web yang bermanfaat bagi orang banyak.
 
 ## Link Website
-* **kamai**
+* **https://web-ramadhan-1447h.netlify.app/**
 ---
 *Dibuat oleh: [Ahmad David Khasbiya]*
 *Tahun: 1447H*
